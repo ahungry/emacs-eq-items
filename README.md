@@ -10,7 +10,6 @@ git clone https://github.com/ahungry/emacs-eq-items.git eq-items
 ```
 
 Then, make sure to add the following to your ~/.emacs:
-### Using load-theme
 ```lisp
 (add-to-list 'load-path "~/.emacs.d/eq-items/")
 (require 'eq-items)
