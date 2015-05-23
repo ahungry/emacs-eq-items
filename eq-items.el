@@ -2257,6 +2257,14 @@
                    (persistent-help . "Type an item name to look up prices on wiki."))
         :buffer "*eq items wiki search*"))
 
+(defun eq-items/cr-search-wiki ()
+  (interactive)
+  (eq-items/wiki
+   (completing-read "Search for what item? "
+                    eq-item/candidates
+                    nil
+                    nil)))
+
 (defun eq-items/search-sellers ()
   (interactive)
   (helm :sources `((name . "Search for what item?")
@@ -2264,6 +2272,14 @@
                    (action . eq-items/ahungry-wts)
                    (persistent-help . "Type an item name to look up who's selling it."))
         :buffer "*eq items seller search*"))
+
+(defun eq-items/cr-search-sellers ()
+  (interactive)
+  (eq-items/ahungry-wts
+   (completing-read "Search for what item? "
+                    eq-item/candidates
+                    nil
+                    nil)))
 
 (defun eq-items/search-buyers ()
   (interactive)
@@ -2273,6 +2289,14 @@
                    (persistent-help . "Type an item name to look up who's buying it."))
         :buffer "*eq items buyer search*"))
 
+(defun eq-items/cr-search-buyers ()
+  (interactive)
+  (eq-items/ahungry-wtb
+   (completing-read "Search for what item? "
+                    eq-item/candidates
+                    nil
+                    nil)))
+
 (defun eq-items/search-all ()
   (interactive)
   (helm :sources `((name . "Search for what item?")
@@ -2280,5 +2304,24 @@
                    (action . eq-items/caller)
                    (persistent-help . "Type an item name to look up prices on wiki and sellers."))
         :buffer "*eq items search*"))
+
+(defun eq-items/cr-search-all ()
+  (interactive)
+  (eq-items/caller
+   (completing-read "Search for what item? "
+                    eq-item/candidates
+                    nil
+                    nil)))
+
+(defun eq-items/org-row-insert (name)
+  (insert (concat "| " name "|")))
+
+(defun eq-items/org-row ()
+  (interactive)
+  (helm :sources `((name . "Search for what item?")
+                   (candidates . ,eq-item/candidates)
+                   (action . eq-items/org-row-insert)
+                   (persistent-help . "Type an item name to look up prices on wiki and sellers."))
+        :buffer "*eq items org-row*"))
 
 (provide 'eq-items)
